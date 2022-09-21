@@ -1,0 +1,54 @@
+<p style="color: green"><%= notice %></p>
+<% if flash[:message]%>
+  <% flash[:message].each do |message|%>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+<h1>Events </h1>
+
+<div id="events">
+  <% @events.each do |event| %>
+    <div class="container">
+      <%= render event %>
+      <p>
+        <%= link_to "Show this event", event %>
+      </p>
+      <p>
+        <% if Enrol.where(user_id:current_user.id,event_id:event.id).exists? %>
+          <p><b>Enrolled</b></p>
+        <% else %>
+          <%= link_to "Click here to register at this event", register_url(event), method: :get %>
+        <% end%>
+      </p>
+    </div>
+    <br/>
+    <br/>
+  <% end %>
+</div>
+
+<% if can? :new, Event %>
+<%= link_to "New event", new_event_path %>
+<% end %>
+
+<style>
+h1
+  {
+    text-align: center;
+    font-weight: bold;
+    font-size: revert;
+    margin-top: 20px;
+ }
+
+.container{
+  height: auto;
+  background-color: gainsboro;
+  border-radius: 10px;
+  padding: 25px;
+  width: 900px;
+  margin-left: 400px;
+}
+
+a{
+  text-decoration: none;
+}
+</style>

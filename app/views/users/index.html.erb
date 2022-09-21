@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+<% if flash[:message]%>
+  <% flash[:message].each do |message|%>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+<h1>Users</h1>
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <td><%= link_to "Edit user", edit_customer_path(id: user.id) %></td>
+    <td><%= link_to "Show user", customer_path(id: user.id) %></td>
+    <td><%= button_to "Destroy user",customer_path(id: user.id),method: :delete ,data:{confirm: "are you sure"} %></td>
+  <% end %>    
+</div>

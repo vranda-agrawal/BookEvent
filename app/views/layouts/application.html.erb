@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventBookingProject</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+    <%= javascript_pack_tag "application" , 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <span style="float:right;padding-right:60px"><%= button_to "Logout", destroy_user_session_path, method: :delete %></span><br>
+    <% else %>
+      <%= button_to "Signup", new_user_registration_path, method: :get %><br><br>
+      <%= button_to "Login", new_user_session_path, method: :get %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
