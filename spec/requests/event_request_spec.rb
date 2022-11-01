@@ -6,10 +6,11 @@ RSpec.describe User, :type => :request do
           it 'render a page to sign in' do
           get "/events"
           expect(response).to redirect_to(new_user_session_url)
-          expect(response).to redirect_to('/users/sign_in')
           end
         end
-        
+        # user = double('user')
+        # allow(user) to_receive('name')
+
         context "when user is logged in" do
           context "when the normal user logged in" do
             subject { create(:event) }

@@ -12,8 +12,8 @@ RSpec.describe Event, :type => :model do
 
     context "testing validations" do
         it "is not valid without a admin_user_id" do
-            subject.admin_user_id = nil
-            expect(subject).to_not be_valid
+          subject.admin_user_id = nil
+          expect(subject).to_not be_valid
         end
     end
 
