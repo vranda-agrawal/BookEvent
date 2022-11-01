@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   layout :check_user_role
+  before_action :authenticate_user!
   
   def index
   end

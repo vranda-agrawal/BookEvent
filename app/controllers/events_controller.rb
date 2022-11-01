@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   layout false
   load_and_authorize_resource
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
   
   def index
     @events = Event.all

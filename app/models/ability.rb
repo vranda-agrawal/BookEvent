@@ -7,13 +7,18 @@ class Ability
     alias_action :index, :show, to: :display
     alias_action :edit,:update,:destroy, to: :change
 
-    if user.has_role? :admin
-      can :display, Event
-      can :change, Event, user_id: user.id
+    if user.present?
+      if user.has_role? :admin
+        can :display, Event
+        can :change, Event, user_id: user.id
+      else
+        can :read, Event
+        can :enrol, Event
+        can :register, Event
+      end
     else
+      can :display, Event
       can :read, Event
-      can :enrol, Event
-      can :register, Event
     end
   end
   
